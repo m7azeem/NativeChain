@@ -42,3 +42,15 @@ var isValidNewBlock = (newBlock, previousBlock) => {
     }
     return true;
 };
+
+//done to only continue with the latest chain
+var replaceChain = (newBlocks) => {
+    if (isValidChain(newBlocks) && newBlocks.length > blockchain.length) {
+        console.log('Received blockchain is valid. Replacing current blockchain with received blockchain');
+        blockchain = newBlocks;
+        broadcast(responseLatestMsg());        
+    } else {
+        console.log('Received blockchain invalid');
+    }
+};
+
